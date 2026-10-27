@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const MONGO_URI='mongodb://localhost:27017/socialmediaguvi'
+const MONGO_URI='mongodb+srv://mongodb_2:Amaan%40111@socialmediaguvi.bglux0n.mongodb.net/'
 
 const connectDB = async () => {
     try {
