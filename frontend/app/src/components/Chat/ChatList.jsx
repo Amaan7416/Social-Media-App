@@ -49,44 +49,46 @@ function ChatList() {
           {message}
         </Message>
       ) : (
-      <>
-      <h5>Chat Users</h5>
-      <hr />
-        <ListGroup>
-          {chats.map((chat) => (
-            <ListGroup.Item key={chat._id}>
-              <div className="d-flex align-items-center">
-                {chat.users.map((user) => (
-                  <div
-                    key={user._id}
-                    className="d-flex align-items-center me-3"
+        <>
+          <h5>Chat Users</h5>
+          <hr />
+          <ListGroup>
+            {chats.map((chat) => (
+              <ListGroup.Item key={chat._id}>
+                <div className="d-flex align-items-center">
+                  {chat.users.map((user) => (
+                    <div
+                      key={user._id}
+                      className="d-flex align-items-center me-3"
+                    >
+                      <img
+                        src={
+                          user.profilePicture
+                            ? `https://your-backend-url.onrender.com${user.profilePicture}`
+                            : "https://via.placeholder.com/50"
+                        }
+                        alt={user.username}
+                        className="rounded-circle me-2"
+                        style={{
+                          width: "40px",
+                          height: "40px",
+                          objectFit: "cover",
+                        }}
+                      />
+                      <span>{user.username}</span>
+                    </div>
+                  ))}
+                  <Button
+                    variant="link"
+                    className="ms-auto"
+                    onClick={() => navigate(`https://social-media-app-inqw.onrender.com/chat/${chat._id}`)}
                   >
-                    <img
-                      src={
-                        user.profilePicture || "https://via.placeholder.com/50"
-                      }
-                      alt={user.username}
-                      className="rounded-circle me-2"
-                      style={{
-                        width: "40px",
-                        height: "40px",
-                        objectFit: "cover",
-                      }}
-                    />
-                    <span>{user.username}</span>
-                  </div>
-                ))}
-                <Button
-                  variant="link"
-                  className="ms-auto"
-                  onClick={() => navigate(`https://social-media-app-inqw.onrender.com/chat/${chat._id}`)}
-                >
-                  Open <i className="fa-solid fa-comments"></i>Chat
-                </Button>
-              </div>
-            </ListGroup.Item>
-          ))}
-        </ListGroup>
+                    Open <i className="fa-solid fa-comments"></i>Chat
+                  </Button>
+                </div>
+              </ListGroup.Item>
+            ))}
+          </ListGroup>
         </>
       )}
     </>

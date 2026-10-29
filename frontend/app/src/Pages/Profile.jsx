@@ -395,7 +395,7 @@ function Profile() {
             <ListGroup className="mt-4">
               {results.map((result) => (
                 <ListGroup.Item key={result._id}>
-                  <Link to={`/user/${result._id}`}>
+                  <Link to={`https://social-media-app-inqw.onrender.com/user/${result._id}`}>
                     <span>{result.username} : </span>
                   </Link>
                   <Button variant="success" className="ml-4" onClick={()=>followUser(result._id)}>
@@ -438,7 +438,7 @@ function Profile() {
                             />
                           </Link>
                           <Card.Title className="mb-0">
-                            <Link to={`/user/${follower._id}`}>
+                            <Link to={`https://social-media-app-inqw.onrender.com/user/${follower._id}`}>
                               {follower.username}
                             </Link>
                           </Card.Title>
@@ -487,7 +487,7 @@ function Profile() {
                             />
                           </Link>
                           <Card.Title className="mb-0">
-                            <Link to={`/user/${following._id}`}>
+                            <Link to={`https://social-media-app-inqw.onrender.com/user/${following._id}`}>
                               {following.username}
                             </Link>
                           </Card.Title>
