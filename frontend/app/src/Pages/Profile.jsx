@@ -35,7 +35,7 @@ function Profile() {
         const userInfo = localStorage.getItem("userInfo");
 
         if (!userInfo) {
-          navigate("/login");
+          navigate("https://social-media-app-inqw.onrender.com/login");
           return;
         }
         else {
@@ -74,7 +74,7 @@ function Profile() {
         );
         if (error.response && error.response.status === 401) {
           localStorage.removeItem("userInfo");
-          navigate("/login");
+          navigate("https://social-media-app-inqw.onrender.com/login");
         }
       } finally {
         setLoading(false);
@@ -92,7 +92,7 @@ function Profile() {
       const userInfo = localStorage.getItem("userInfo");
 
       if (!userInfo) {
-        navigate("/login");
+        navigate("https://social-media-app-inqw.onrender.com/login");
         return;
       }
       const pasredUser = JSON.parse(userInfo);
@@ -131,7 +131,7 @@ function Profile() {
       };
   
       const {data} = await axios.post('https://social-media-app-inqw.onrender.com/api/chat',{userId},config);
-      navigate(`/chat/${data._id}`);
+      navigate(`https://social-media-app-inqw.onrender.com/chat/${data._id}`);
   
     }
     catch (error) {
@@ -149,7 +149,7 @@ function Profile() {
       const userInfo = localStorage.getItem("userInfo");
 
       if (!userInfo) {
-        navigate("/login");
+        navigate("https://social-media-app-inqw.onrender.com/login");
         return;
       }
       const pasredUser = JSON.parse(userInfo);
@@ -421,7 +421,7 @@ function Profile() {
                     <Col key={follower._id}>
                       <Card className="h-100 text-center">
                         <Card.Body className="d-flex align-items-center">
-                          <Link to={`/user/${follower._id}`}>
+                          <Link to={`https://social-media-app-inqw.onrender.com/user/${follower._id}`}>
                             <Card.Img
                               variant="top"
                               src={
@@ -470,7 +470,7 @@ function Profile() {
                     <Col key={following._id}>
                       <Card className="h-100 text-center">
                         <Card.Body className="d-flex align-items-center">
-                          <Link to={`/user/${following._id}`}>
+                          <Link to={`https://social-media-app-inqw.onrender.com/user/${following._id}`}>
                             <Card.Img
                               variant="top"
                               src={
@@ -512,7 +512,7 @@ function Profile() {
                 {userPosts.map((post) => (
                   <Col key={post._id} xs={4}>
                     <Card>
-                      <Link to={`/post/${post._id}`}>
+                      <Link to={`https://social-media-app-inqw.onrender.com/post/${post._id}`}>
                         <Card.Img
                           variant="top"
                           src={post.image}
