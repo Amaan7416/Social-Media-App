@@ -120,7 +120,7 @@ function Login() {
       localStorage.setItem("userInfo", JSON.stringify(data));
       clearForm();
       window.location.reload();
-      navigate("/profile");
+      navigate("https://social-media-app-inqw.onrender.com/profile");
     } catch (error) {
       setError(
         error.response && error.response.data.message
@@ -135,7 +135,7 @@ function Login() {
   useEffect(()=>{
     const userInfo=localStorage.getItem("userInfo");
     if(userInfo){
-      navigate("/profile")
+      navigate("https://social-media-app-inqw.onrender.com/profile")
     }
   },[navigate])
   
@@ -236,7 +236,7 @@ function Login() {
             <Row className="py-3">
               <Col>
                 New User?
-                <Link to="/signup">Sign Up</Link>
+                <Link to="https://social-media-app-inqw.onrender.com/signup">Sign Up</Link>
               </Col>
             </Row>
           </Col>
