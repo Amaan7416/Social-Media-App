@@ -48,7 +48,7 @@ function Header() {
             </li>
             {user &&
             <li className="nav-item">
-              <LinkContainer to="https://social-media-app-inqw.onrender.com/chats">
+              <LinkContainer to="/chats">
                 <Link className="nav-link">Chat</Link>
               </LinkContainer>
             </li> }
@@ -66,7 +66,7 @@ function Header() {
               <div className="dropdown-menu">
                 {!user ? (
                   <>
-                    <LinkContainer to="https://social-media-app-inqw.onrender.com/login">
+                    <LinkContainer to="/login">
                       <Link className="dropdown-item">Login</Link>
                     </LinkContainer>
                     <LinkContainer to="/signup">
@@ -76,7 +76,7 @@ function Header() {
                 ) : (
                   <>
             
-                    <LinkContainer to="https://social-media-app-inqw.onrender.com/profile">
+                    <LinkContainer to="/profile">
                       <Link className="dropdown-item">Profile</Link>
                     </LinkContainer>
                     <div className="dropdown-divider"></div>

@@ -30,7 +30,7 @@ const startChartHandler = async (userId)=>{
     };
 
     const {data} = await axios.post('https://social-media-app-inqw.onrender.com/api/chat',{userId},config);
-    navigate(`https://social-media-app-inqw.onrender.com/chat/${data._id}`);
+    navigate(`/chat/${data._id}`);
   }
   catch (error) {
     setError(error.response && error.response.data.message ? error.response.data.message : error.message);
@@ -83,7 +83,7 @@ const fetchChats = async ()=>{
     useEffect(()=>{   
         const userInfo = localStorage.getItem("userInfo");     
         if (!userInfo) {
-          navigate("https://social-media-app-inqw.onrender.com/login");
+          navigate("/login");
           return;
         }
       fetchPosts();
