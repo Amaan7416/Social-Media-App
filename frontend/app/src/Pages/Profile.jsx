@@ -264,7 +264,7 @@ function Profile() {
       await axios.post(`https://social-media-app-inqw.onrender.com/api/users/unfollow/${userId}`, {}, config);
       setMessage("User followed Successfully");
 
-      const { data } = await axios.get("/api/users/profile", config);
+      const { data } = await axios.get("https://social-media-app-inqw.onrender.com/api/users/profile", config);
       setUser(data);
     } catch (error) {
       setError(
