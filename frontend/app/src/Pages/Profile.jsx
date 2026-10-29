@@ -13,7 +13,6 @@ import axios from "axios";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import QRCode from "qrcode";
-import UserPosts from "../components/Posts/UserPost"
 
 function Profile() {
   const navigate = useNavigate();
@@ -25,8 +24,7 @@ function Profile() {
   const [keyword, setKeyword] = useState("");
   const [results, setResults] = useState([]);
   const [profilePicture, setProfilePicture] = useState(null);
-  const handleClose = () => setMessage("");
-  const [userPosts, setUserPosts] = useState([]); // State for user posts
+  const [userPosts, setUserPosts] = useState([]);
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -38,21 +36,23 @@ function Profile() {
           navigate("/login");
           return;
         }
-        else {
-        }
-        const pasredUser = JSON.parse(userInfo);
+
+        const parsedUser = JSON.parse(userInfo);
         const config = {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${pasredUser.token}`,
+            Authorization: `Bearer ${parsedUser.token}`,
           },
         };
 
         const { data } = await axios.get("https://social-media-app-inqw.onrender.com/api/users/profile", config);
         setUser(data);
 
-        const {data:postsData} =await axios.get(`https://social-media-app-inqw.onrender.com/api/posts/user/${pasredUser._id}`,config);
-        setUserPosts(postsData)
+        const { data: postsData } = await axios.get(
+          `https://social-media-app-inqw.onrender.com/api/posts/user/${data._id}`,
+          config
+        );
+        setUserPosts(Array.isArray(postsData) ? postsData : []);
 
         if (data.twoFactorAuthSecret) {
           const otpauthurl = `otpauth://totp/SecretKey?secret=${data.twoFactorAuthSecret}`;
@@ -95,11 +95,11 @@ function Profile() {
         navigate("/login");
         return;
       }
-      const pasredUser = JSON.parse(userInfo);
+      const parsedUser = JSON.parse(userInfo);
       const config = {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${pasredUser.token}`,
+          Authorization: `Bearer ${parsedUser.token}`,
         },
       };
 
@@ -119,10 +119,15 @@ function Profile() {
     }
   };
 
-  const startChartHandler = async (userId)=>{
+  const startChatHandler = async (userId) => {
     try{
       setLoading(true);
-      const userInfo=JSON.parse(localStorage.getItem('userInfo'))
+      const storedUser = localStorage.getItem("userInfo");
+      if (!storedUser) {
+        navigate("/login");
+        return;
+      }
+      const userInfo = JSON.parse(storedUser);
       const config = {
         headers: {
           'Content-Type':'application/json',
@@ -152,13 +157,18 @@ function Profile() {
         navigate("/login");
         return;
       }
-      const pasredUser = JSON.parse(userInfo);
+      const parsedUser = JSON.parse(userInfo);
       const config = {
         headers: {
           "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${pasredUser.token}`,
+          Authorization: `Bearer ${parsedUser.token}`,
         },
       };
+
+      if (!profilePicture) {
+        setError("Please choose a profile picture first.");
+        return;
+      }
 
       const formData = new FormData();
       formData.append("profilePicture", profilePicture);
@@ -188,6 +198,10 @@ function Profile() {
       setMessage("");
 
       const userInfo = localStorage.getItem("userInfo");
+      if (!userInfo) {
+        navigate("/login");
+        return;
+      }
       const parsedUser = JSON.parse(userInfo);
 
       const config = {
@@ -223,6 +237,10 @@ function Profile() {
       setLoading(true);
 
       const userInfo = localStorage.getItem("userInfo");
+      if (!userInfo) {
+        navigate("/login");
+        return;
+      }
       const parsedUser = JSON.parse(userInfo);
 
       const config = {
@@ -252,6 +270,10 @@ function Profile() {
       setLoading(true);
 
       const userInfo = localStorage.getItem("userInfo");
+      if (!userInfo) {
+        navigate("/login");
+        return;
+      }
       const parsedUser = JSON.parse(userInfo);
 
       const config = {
@@ -262,7 +284,7 @@ function Profile() {
       };
 
       await axios.post(`https://social-media-app-inqw.onrender.com/api/users/unfollow/${userId}`, {}, config);
-      setMessage("User followed Successfully");
+      setMessage("User unfollowed successfully");
 
       const { data } = await axios.get("https://social-media-app-inqw.onrender.com/api/users/profile", config);
       setUser(data);
@@ -402,7 +424,7 @@ function Profile() {
                     Follow
                   </Button>
 
-                  <Button variant="light" onClick={()=>startChartHandler(result._id)}>Chat</Button>
+                  <Button variant="light" onClick={() => startChatHandler(result._id)}>Chat</Button>
                 </ListGroup.Item>
               ))}
             </ListGroup>
@@ -411,14 +433,14 @@ function Profile() {
               <Col md={6}>
                 <h5 className="mt-4 bg-light p-2 text-center">
                   Followers{" "}
-                  <span class="badge bg-primary rounded-pill">
+                  <span className="badge bg-primary rounded-pill">
                     {user.followers?.length}
                   </span>
                 </h5>
 
                 {user.followers?.map((follower) => (
-                  <Row className="g-2">
-                    <Col key={follower._id}>
+                  <Row className="g-2" key={follower._id}>
+                    <Col>
                       <Card className="h-100 text-center">
                         <Card.Body className="d-flex align-items-center">
                           <Link to={`/user/${follower._id}`}>
@@ -446,7 +468,7 @@ function Profile() {
                           <Button
                               variant="success"
                               className="ms-2 btn-sm"
-                              onClick={() => followUser(follower._id)}
+                              onClick={() => unfollowUser(follower._id)}
                             >
                               Unfollow
                             </Button>
@@ -460,14 +482,14 @@ function Profile() {
               <Col md={6}>
                 <h5 className="mt-4 bg-light p-2 text-center">
                   Following{" "}
-                  <span class="badge bg-primary rounded-pill">
+                  <span className="badge bg-primary rounded-pill">
                     {user.following?.length}
                   </span>
                 </h5>
            
                 {user.following?.map((following) => (
-                  <Row className="g-2">
-                    <Col key={following._id}>
+                  <Row className="g-2" key={following._id}>
+                    <Col>
                       <Card className="h-100 text-center">
                         <Card.Body className="d-flex align-items-center">
                           <Link to={`/user/${following._id}`}>
