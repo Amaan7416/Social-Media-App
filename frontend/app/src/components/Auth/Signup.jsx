@@ -16,7 +16,7 @@ import axios from "axios";
 function Signup() {
   const navigate = useNavigate();
   const location = useLocation();
-  const redirect = location.search ? location.search.split("=")[1] : "https://social-media-app-inqw.onrender.com/profile";
+  const redirect = location.search ? location.search.split("=")[1] : "/profile";
   const [messsage, setMessage] = useState("");
   const [show, changeshow] = useState("fa fa-eye-slash");
   const handleClose = () => setMessage("");
@@ -316,7 +316,7 @@ function Signup() {
               <Row className="py-3">
                 <Col>
                   Already User?
-                  <Link to="https://social-media-app-inqw.onrender.com/login">Login In</Link>
+                  <Link to="/login">Login In</Link>
                 </Col>
               </Row>
             </Col>
