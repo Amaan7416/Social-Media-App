@@ -6,7 +6,7 @@ import axios from "axios";
 import Loader from "../Loader";
 import Message from "../Message";
 
-const ENDPOINT = 'http://localhost:5000';
+const ENDPOINT = 'https://social-media-app-inqw.onrender.com';
 let socket;
 
 function Chat() {
@@ -42,7 +42,7 @@ function Chat() {
         },
       };
 
-      const { data } = await axios.get(`https://social-media-app-1-to19.onrender.com/api/chat/${chatId}`, config);
+      const { data } = await axios.get(`https://social-media-app-inqw.onrender.com/api/chat/${chatId}`, config);
       setMessages(data); // Assuming data contains the array of messages
       setLoading(false);
     } catch (error) {
@@ -68,7 +68,7 @@ function Chat() {
         },
       };
 
-      const { data } = await axios.post(`https://social-media-app-1-to19.onrender.com/api/chat/${chatId}/message`, { content: messageContent }, config);
+      const { data } = await axios.post(`https://social-media-app-inqw.onrender.com/api/chat/${chatId}/message`, { content: messageContent }, config);
       const lastMessage = data.messages[data.messages.length - 1]; // Get the last message
  
       socket.emit('sendMessage', { chatId,  "content":lastMessage.content});

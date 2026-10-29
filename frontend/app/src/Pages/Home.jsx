@@ -29,8 +29,8 @@ const startChartHandler = async (userId)=>{
       },
     };
 
-    const {data} = await axios.post('https://social-media-app-1-to19.onrender.com/api/chat',{userId},config);
-    navigate(`https://social-media-app-1-to19.onrender.com/chat/${data._id}`);
+    const {data} = await axios.post('https://social-media-app-inqw.onrender.com/api/chat',{userId},config);
+    navigate(`https://social-media-app-inqw.onrender.com/chat/${data._id}`);
   }
   catch (error) {
     setError(error.response && error.response.data.message ? error.response.data.message : error.message);
@@ -50,7 +50,7 @@ const fetchChats = async ()=>{
       },
     };
 
-    const {data} = await axios.get('https://social-media-app-1-to19.onrender.com/api/chat',config);
+    const {data} = await axios.get('https://social-media-app-inqw.onrender.com/api/chat',config);
     setChats(data);
   
   }
@@ -70,7 +70,7 @@ const fetchChats = async ()=>{
             Authorization: `Bearer ${userInfo.token}`,
           },
         };
-        const {data} = await axios.get('https://social-media-app-1-to19.onrender.com/api/posts',config);
+        const {data} = await axios.get('https://social-media-app-inqw.onrender.com/api/posts',config);
         setPosts(data);
         setLoading(false)
       }
@@ -83,7 +83,7 @@ const fetchChats = async ()=>{
     useEffect(()=>{   
         const userInfo = localStorage.getItem("userInfo");     
         if (!userInfo) {
-          navigate("https://social-media-app-1-to19.onrender.com/login");
+          navigate("https://social-media-app-inqw.onrender.com/login");
           return;
         }
       fetchPosts();

@@ -23,7 +23,7 @@ function ChatList() {
         },
       };
 
-      const { data } = await axios.get("https://social-media-app-1-to19.onrender.com/api/chat", config);
+      const { data } = await axios.get("https://social-media-app-inqw.onrender.com/api/chat", config);
       setChats(data);
     } catch (error) {
       setError(
@@ -79,7 +79,7 @@ function ChatList() {
                 <Button
                   variant="link"
                   className="ms-auto"
-                  onClick={() => navigate(`https://social-media-app-1-to19.onrender.com/chat/${chat._id}`)}
+                  onClick={() => navigate(`https://social-media-app-inqw.onrender.com/chat/${chat._id}`)}
                 >
                   Open <i className="fa-solid fa-comments"></i>Chat
                 </Button>

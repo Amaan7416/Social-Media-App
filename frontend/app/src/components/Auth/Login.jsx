@@ -116,7 +116,7 @@ function Login() {
         },
       };
 
-      const { data } = await axios.post("https://social-media-app-1-to19.onrender.com/api/auth/login", formValues, config);
+      const { data } = await axios.post("https://social-media-app-inqw.onrender.com/api/auth/login", formValues, config);
       localStorage.setItem("userInfo", JSON.stringify(data));
       clearForm();
       window.location.reload();
