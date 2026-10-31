@@ -119,8 +119,8 @@ function Login() {
       const { data } = await axios.post("https://social-media-app-inqw.onrender.com/api/auth/login", formValues, config);
       localStorage.setItem("userInfo", JSON.stringify(data));
       clearForm();
-      window.location.reload();
-      navigate("/profile");
+      //window.location.reload();
+      navigate("/profile", { replace: true });
     } catch (error) {
       setError(
         error.response && error.response.data.message
@@ -135,7 +135,7 @@ function Login() {
   useEffect(()=>{
     const userInfo=localStorage.getItem("userInfo");
     if(userInfo){
-      navigate("/profile")
+     navigate("/profile", { replace: true });
     }
   },[navigate])
   
