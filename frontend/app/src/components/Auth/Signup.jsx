@@ -157,8 +157,8 @@ function Signup() {
       const { data } = await axios.post("https://social-media-app-inqw.onrender.com/api/auth/signup", formValues, config);
       localStorage.setItem("userInfo", JSON.stringify(data));
       clearForm();
-      window.location.reload();
-      navigate(redirect);
+     // window.location.reload();
+     navigate("redirect", { replace: true });
     } catch (error) {
       setError(
         error.response && error.response.data.message

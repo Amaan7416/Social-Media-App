@@ -81,7 +81,7 @@ function ChatList() {
                   <Button
                     variant="link"
                     className="ms-auto"
-                    onClick={() => navigate(`https://social-media-app-inqw.onrender.com/chat/${chat._id}`)}
+                    onClick={() => navigate(`/chat/${chat._id}`)}
                   >
                     Open <i className="fa-solid fa-comments"></i>Chat
                   </Button>

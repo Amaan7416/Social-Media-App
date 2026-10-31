@@ -74,7 +74,7 @@ function Profile() {
         );
         if (error.response && error.response.status === 401) {
           localStorage.removeItem("userInfo");
-          navigate("/login");
+         navigate("/login", { replace: true });
         }
       } finally {
         setLoading(false);
@@ -92,7 +92,7 @@ function Profile() {
       const userInfo = localStorage.getItem("userInfo");
 
       if (!userInfo) {
-        navigate("/login");
+        navigate("/login", { replace: true });
         return;
       }
       const parsedUser = JSON.parse(userInfo);
@@ -124,7 +124,7 @@ function Profile() {
       setLoading(true);
       const storedUser = localStorage.getItem("userInfo");
       if (!storedUser) {
-        navigate("/login");
+        navigate("/login", { replace: true });
         return;
       }
       const userInfo = JSON.parse(storedUser);
@@ -154,7 +154,7 @@ function Profile() {
       const userInfo = localStorage.getItem("userInfo");
 
       if (!userInfo) {
-        navigate("/login");
+       navigate("/login", { replace: true });
         return;
       }
       const parsedUser = JSON.parse(userInfo);
@@ -199,7 +199,7 @@ function Profile() {
 
       const userInfo = localStorage.getItem("userInfo");
       if (!userInfo) {
-        navigate("/login");
+       navigate("/login", { replace: true });
         return;
       }
       const parsedUser = JSON.parse(userInfo);
@@ -238,7 +238,7 @@ function Profile() {
 
       const userInfo = localStorage.getItem("userInfo");
       if (!userInfo) {
-        navigate("/login");
+        navigate("/login", { replace: true });
         return;
       }
       const parsedUser = JSON.parse(userInfo);
@@ -271,7 +271,7 @@ function Profile() {
 
       const userInfo = localStorage.getItem("userInfo");
       if (!userInfo) {
-        navigate("/login");
+        navigate("/login", { replace: true });
         return;
       }
       const parsedUser = JSON.parse(userInfo);

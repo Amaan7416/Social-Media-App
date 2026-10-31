@@ -83,7 +83,7 @@ const fetchChats = async ()=>{
     useEffect(()=>{   
         const userInfo = localStorage.getItem("userInfo");     
         if (!userInfo) {
-          navigate("/login");
+         navigate("/login", { replace: true });
           return;
         }
       fetchPosts();
